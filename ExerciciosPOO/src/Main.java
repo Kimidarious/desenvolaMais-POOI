@@ -1,66 +1,41 @@
-import Exercicio2.ItemPedido;
-import Exercicio2.Pedido;
-import Exercicio2.Produto;
-import exercicio1.ContaBancaria;
-import exercicio1.ContaEspecial;
+import Desafio1.Produto;
 
 public class Main {
     public static void main(String[] args) {
-            System.out.println("========== TESTE EXERCÍCIO 1: BANCO DE CONTAS ==========\n");
+                    System.out.println("========== TESTE DA CLASSE PRODUTO ==========\n");
 
-            // Criando contas
-            ContaBancaria contaNormal = new ContaBancaria("12345-6", 1000.0, 500.0);
-            ContaEspecial contaEspecial = new ContaEspecial("98765-4", 500.0, 1000.0);
+                    // Testando construtor completo
+                    System.out.println("=== Criando produto com estoque inicial ===");
+                    Produto produto1 = new Produto("Notebook Dell", 2500.00, 10);
+                    produto1.exibirResumo();
 
-            System.out.println("=== SITUAÇÃO INICIAL ===");
-            contaNormal.exibirInfo();
-            contaEspecial.exibirInfo();
+                    // Testando construtor sem estoque
+                    System.out.println("\n=== Criando produto sem estoque inicial ===");
+                    Produto produto2 = new Produto("Mouse Gamer", 150.00);
+                    produto2.exibirResumo();
 
-            System.out.println("\n=== TESTANDO CONTA NORMAL ===");
-            contaNormal.depositar(200.0);
-            contaNormal.sacar(500.0);
-            contaNormal.sacar(800.0); // Deve falhar - saldo insuficiente
-            System.out.printf("Saldo atual: R$ %.2f\n", contaNormal.consultarSaldo());
+                    // Testando adição de estoque
+                    System.out.println("\n=== Testando adição de estoque ===");
+                    produto2.adicionarEstoque(25);
+                    produto2.exibirResumo();
 
-            System.out.println("\n=== TESTANDO CONTA ESPECIAL ===");
-            contaEspecial.depositar(100.0);
-            contaEspecial.sacar(800.0); // Usa o limite
-            contaEspecial.sacar(900.0); // Deve falhar - excede limite
-            System.out.printf("Saldo atual: R$ %.2f\n", contaEspecial.consultarSaldo());
+                    // Testando vendas
+                    System.out.println("\n=== Testando vendas ===");
+                    produto1.vender(3); // Venda normal
+                    produto1.vender(15); // Tentativa de venda com estoque insuficiente
+                    produto1.vender(5); // Outra venda normal
 
-            System.out.println("\n=== SITUAÇÃO FINAL ===");
-            contaNormal.exibirInfo();
-            contaEspecial.exibirInfo();
+                    // Estado final dos produtos
+                    System.out.println("\n=== ESTADO FINAL DOS PRODUTOS ===");
+                    produto1.exibirResumo();
+                    produto2.exibirResumo();
 
-            System.out.println("\n\n========== TESTE EXERCÍCIO 2: LOJA VIRTUAL ==========\n");
+                    // Testando validações
+                    System.out.println("\n=== Testando validações ===");
+                    produto1.adicionarEstoque(-5); // Quantidade negativa
+                    produto1.vender(-2); // Quantidade negativa para venda
+                    produto2.setPreco(-100); // Preço negativo
 
-            // Criando produtos
-            Produto notebook = new Produto("Notebook Dell", 2500.00);
-            Produto mouse = new Produto("Mouse Gamer", 150.00);
-            Produto teclado = new Produto("Teclado Mecânico", 300.00);
-
-            System.out.println("=== PRODUTOS DISPONÍVEIS ===");
-            System.out.println(notebook);
-            System.out.println(mouse);
-            System.out.println(teclado);
-
-            // Criando pedido
-            Pedido pedido = new Pedido(1001);
-
-            System.out.println("\n=== ADICIONANDO ITENS AO PEDIDO ===");
-            pedido.adicionarItem(notebook, 1);
-            pedido.adicionarItem(mouse, 2);
-            pedido.adicionarItem(teclado, 1);
-
-            // Exibindo pedido final
-            pedido.exibirPedido();
-
-            System.out.println("\n=== CRIANDO SEGUNDO PEDIDO ===");
-            Pedido pedido2 = new Pedido(1002);
-            pedido2.adicionarItem(new ItemPedido(mouse, 5));
-            pedido2.adicionarItem(new ItemPedido(teclado, 2));
-            pedido2.exibirPedido();
-
-            System.out.println("\n========== TESTES CONCLUÍDOS ==========");
+                    System.out.println("\n========== TESTES CONCLUÍDOS ==========");
     }
 }
