@@ -1,17 +1,17 @@
 package Desafio1;
 
-public class Produto {
+public class ProdutoEstoque {
     private String nome;
     private double preco;
     private int estoque;
 
-    public Produto(String nome, double preco, int estoque){
+    public ProdutoEstoque(String nome, double preco, int estoque){
         this.nome = nome;
         this.preco = preco;
         this.estoque = estoque;
     }
 
-    public Produto(String nome, double preco){
+    public ProdutoEstoque(String nome, double preco){
         this.nome = nome;
         this.preco = preco;
         this.estoque = 0;
