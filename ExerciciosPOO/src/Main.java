@@ -1,6 +1,7 @@
 import Desafio1.ProdutoEstoque;
 import Exercicio2.Pedido;
 import Exercicio2.Produto;
+import Exercicio2.ItemPedido;
 import Exercicio3.Aluno;
 import Exercicio4.Livro;
 import exercicio1.ContaBancaria;
